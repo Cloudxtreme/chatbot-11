@@ -7,8 +7,7 @@ import random
 import numpy as np
 from six.moves import xrange
 import tensorflow as tf
-try:
-	from tensorflow.models.rnn import rnn, 
+try: 
 	from tensorflow.contrib import seq2seq, rnn
 	from tensorflow.contrib.rnn.python.ops import rnn_cell
 except ImportError:
