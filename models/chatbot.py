@@ -73,12 +73,12 @@ class ChatbotModel(object):
 		def seq2seq_f(encoder_inputs, decoder_inputs, do_decode):
 			version = tf.__version__
 			if version.startswith("0.6") or version.startswith("0.7"):
-				return tf.nn.seq2seq.embedding_attention_seq2seq(
+				return tf.contrib.seq2seq.embedding_attention_seq2seq(
 					encoder_inputs, decoder_inputs, cell, vocab_size,
 					vocab_size, output_projection=output_projection,
 					feed_previous=do_decode)
 			else:
-				return tf.nn.seq2seq.embedding_attention_seq2seq(
+				return tf.contrib.seq2seq.embedding_attention_seq2seq(
 					encoder_inputs, decoder_inputs, cell, vocab_size,
 					vocab_size,hidden_size, output_projection=output_projection,
 					feed_previous=do_decode)
