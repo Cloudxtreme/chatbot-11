@@ -62,7 +62,7 @@ class ChatbotModel(object):
 
 		#e, hidden_size, initializer=tf.random_uniform_initializer(-1.0, 1.0)
 
-		with tf.variable_scope("lstm") as scope:
+		with reuse=tf.variable_scope("lstm").reuse as scope:
 			cell = tf.contrib.rnn.DropoutWrapper(
 				tf.contrib.rnn.BasicLSTMCell(hidden_size),
 				input_keep_prob=self.dropout_keep_prob_lstm_input,
