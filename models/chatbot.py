@@ -73,12 +73,12 @@ class ChatbotModel(object):
 		def seq2seq_f(encoder_inputs, decoder_inputs, do_decode):
 			version = tf.__version__
 			if version.startswith("0.6") or version.startswith("0.7"):
-				return tf.contrib.seq2seq.embedding_attention_seq2seq(
+				return tf.contrib.legacy_seq2seq.embedding_attention_seq2seq(
 					encoder_inputs, decoder_inputs, cell, vocab_size,
 					vocab_size, output_projection=output_projection,
 					feed_previous=do_decode)
 			else:
-				return tf.contrib.seq2seq.embedding_attention_seq2seq(
+				return tf.contrib.legacy_seq2seq.embedding_attention_seq2seq(
 					encoder_inputs, decoder_inputs, cell, vocab_size,
 					vocab_size,hidden_size, output_projection=output_projection,
 					feed_previous=do_decode)
@@ -103,7 +103,7 @@ class ChatbotModel(object):
 
 
 		if forward_only:
-			self.outputs, self.losses = tf.contrib.seq2seq.model_with_buckets(
+			self.outputs, self.losses = tf.contrib.legacy_seq2seq.model_with_buckets(
 				self.encoder_inputs, self.decoder_inputs, targets,
 				self.target_weights, buckets, lambda x, y: seq2seq_f(x, y, True),
 				softmax_loss_function=softmax_loss_function)
