@@ -63,12 +63,12 @@ class ChatbotModel(object):
 		#e, hidden_size, initializer=tf.random_uniform_initializer(-1.0, 1.0)
 
 		with tf.variable_scope("lstm") as scope:
-			cell = rnn_cell.DropoutWrapper(
-				rnn_cell.BasicLSTMCell(hidden_size),
+			cell = tf.nn.rnn_cell.DropoutWrapper(
+				tf.nn.rnn_cell.BasicLSTMCell(hidden_size),
 				input_keep_prob=self.dropout_keep_prob_lstm_input,
 				output_keep_prob=self.dropout_keep_prob_lstm_output)
 			if num_layers > 1:
-				cell = rnn_cell.MultiRNNCell([cell] * num_layers)
+				cell = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)
 
 		def seq2seq_f(encoder_inputs, decoder_inputs, do_decode):
 			version = tf.__version__
