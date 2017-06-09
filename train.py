@@ -77,7 +77,7 @@ def main():
 	print "Vocab size is: {0}".format(vocab_size)
 	FLAGS.vocab_size = vocab_size
 	with tf.Session() as sess:
-		writer = tf.train.SummaryWriter("/tmp/tb_logs_chatbot", sess.graph)
+		writer = tf.train.FileWriter("/tmp/tb_logs_chatbot", sess.graph)
 		model = createModel(sess, path, vocab_size)
 		print "Using bucket sizes:"
 		print _buckets
