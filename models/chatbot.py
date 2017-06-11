@@ -68,7 +68,7 @@ class ChatbotModel(object):
 				input_keep_prob=self.dropout_keep_prob_lstm_input,
 				output_keep_prob=self.dropout_keep_prob_lstm_output)
 			if num_layers > 1:
-				cell = tf.contrib.rnn.MultiRNNCell([cell for _ in range(self.args.num_layers)])
+				cell = tf.contrib.rnn.MultiRNNCell([cell for _ in range(self.num_layers)])
 
 		def seq2seq_f(encoder_inputs, decoder_inputs, do_decode):
 			version = tf.__version__
