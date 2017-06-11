@@ -34,6 +34,7 @@ class ChatbotModel(object):
 		self.vocab_size = vocab_size
 		self.buckets = buckets
 		self.dropout = dropout
+		self.num_layers = num_layers
 		self.batch_size = batch_size
 		self.learning_rate = tf.Variable(float(learning_rate), trainable=False)
 		self.learning_rate_decay_op = self.learning_rate.assign(
